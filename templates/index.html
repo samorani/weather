@@ -25,6 +25,7 @@
         .temp { font-size: 4rem; font-weight: 600; margin: 0.5rem 0; }
         .desc { font-size: 1.25rem; color: #4b5563; }
         .error { color: #b91c1c; }
+        .link { display: inline-block; margin-top: 1rem; color: #2563eb; }
     </style>
 </head>
 <body>
@@ -36,6 +37,7 @@
         {% else %}
             <p class="error">{{ error }}</p>
         {% endif %}
+        <a class="link" href="{{ url_for('zip_weather') }}">Check weather by zip code</a>
     </div>
 </body>
 </html>

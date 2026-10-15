@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather by Zip Code</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #eef3f8;
+            color: #1f2a37;
+        }
+        .card {
+            text-align: center;
+            padding: 2rem 3rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        }
+        form { display: flex; gap: 0.5rem; justify-content: center; }
+        input {
+            font-size: 1rem;
+            padding: 0.5rem 0.75rem;
+            width: 8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+        button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border: 0;
+            border-radius: 6px;
+            background: #2563eb;
+            color: #fff;
+            cursor: pointer;
+        }
+        .temp { font-size: 4rem; font-weight: 600; margin: 0.5rem 0; }
+        .desc { font-size: 1.25rem; color: #4b5563; }
+        .error { color: #b91c1c; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Weather by Zip Code</h1>
+        <form action="/zip" method="get">
+            <input type="text" name="zip" value="{{ zip_code }}" placeholder="e.g. 95112"
+                   inputmode="numeric" pattern="\d{5}" maxlength="5" required
+                   aria-label="US zip code">
+            <button type="submit">Get weather</button>
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% elif weather %}
+            <h2>{{ place.name }}</h2>
+            <p class="temp">{{ weather.temperature }}&deg;F</p>
+            <p class="desc">{{ weather.description }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
